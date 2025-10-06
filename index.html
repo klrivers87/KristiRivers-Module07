@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luigi's Italian Restaurant</title>
+  <meta name="description" content="Handmade pasta, wood-fired pizza, and warm hospitality in Morehead City, NC." />
+
+  <!-- Adobe Fonts: Sant’Elia Script -->
+  <link rel="stylesheet" href="https://use.typekit.net/udl7bhs.css">
+  <!-- Pairing for subheads -->
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <img src="images/Luigi's Logo.png" alt="Luigi's — Italian Restaurant" width="160" height="48" />
+    </div>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
+    <label for="nav-toggle" class="hamburger" aria-controls="primary-nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+      <span class="visually-hidden">Menu</span>
+    </label>
+
+    <nav id="primary-nav" class="site-nav" role="navigation" aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#reserve">Reserve</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" role="img" aria-label="Rustic table with herbs and pasta ingredients">
+      <div class="hero__content container">
+        <h1>Benvenuti a Luigi's</h1>
+        <p>From our kitchen to your table — handmade pasta, coastal seafood, and wood-fired pizza.</p>
+        <a class="btn btn--primary" href="#reserve">Book a Table</a>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <div class="grid two">
+        <div>
+          <h2>Our Story</h2>
+          <p>Luigi’s brings old-world recipes to Morehead City with local ingredients. Our dough ferments 48 hours. Sauces simmer slow. Guests linger. That’s the point.</p>
+
+          <ul class="icon-list">
+            <li>
+              <img class="icon" src="images/Flame.png" alt="">
+              Wood-fired oven
+            </li>
+            <li>
+              <img class="icon" src="images/Flour.png" alt="">
+              Fresh pasta daily
+            </li>
+            <li>
+              <img class="icon" src="images/Fish.png" alt="">
+              Coastal seafood specials
+            </li>
+          </ul>
+        </div>
+
+        <figure class="photo-card">
+          <img src="images/Tagliatelle1.jpg" alt="House Tagliatelle Bolognese"
+               loading="lazy" decoding="async" width="640" height="480" />
+          <figcaption>House Tagliatelle Bolognese</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="menu" class="section section--alt">
+      <div class="container">
+        <h2>Menu Highlights</h2>
+        <div class="grid three">
+          <figure class="menu-card">
+            <img src="images/Margherita.jpg" alt="Margherita pizza with tomatoes and basil"
+                 loading="lazy" decoding="async" width="420" height="320" />
+            <figcaption>
+              <h3>Margherita</h3>
+              <p>Margherita pizza with tomatoes and basil.</p>
+            </figcaption>
+          </figure>
+          <figure class="menu-card">
+            <img src="images/Linguine.jpg" alt="Shrimp linguine with tomatoes, basil, and Parmigiano."
+                 loading="lazy" decoding="async" width="420" height="320" />
+            <figcaption>
+              <h3>Linguine ai Gamberi</h3>
+              <p>Linguine with local shrimp, tomatoes, basil, and Parmigiano.</p>
+            </figcaption>
+          </figure>
+          <figure class="menu-card">
+            <img src="images/Tiramisu2.jpg" alt="Tiramisù dusted with cocoa"
+                 loading="lazy" decoding="async" width="420" height="320" />
+            <figcaption>
+              <h3>Tiramisù</h3>
+              <p>Espresso-soaked ladyfingers, mascarpone.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="reserve" class="section container">
+      <h2>Reservations</h2>
+      <p>Open nightly from 5:00 to 10:00. Parties of 8+ please call ahead.</p>
+
+      <form class="reserve-form" aria-label="Reservation form">
+        <div class="form-row">
+          <label for="first">First name</label>
+          <input id="first" name="first_name" type="text" autocomplete="given-name" placeholder="First name" required />
+        </div>
+
+        <div class="form-row">
+          <label for="last">Last name</label>
+          <input id="last" name="last_name" type="text" autocomplete="family-name" placeholder="Last name" required />
+        </div>
+
+        <div class="form-row">
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" required />
+        </div>
+
+        <div class="form-row">
+          <label for="time">Time</label>
+          <input id="time" name="time" type="time" required />
+        </div>
+
+        <div class="form-row">
+          <label for="party">Party size</label>
+          <input id="party" name="party" type="number" min="1" max="14" value="2" required />
+        </div>
+
+        <div class="form-row form-row--button">
+          <label aria-hidden="true">Action</label>
+          <button class="btn btn--secondary reserve-btn" type="submit">Request Booking</button>
+        </div>
+      </form>
+
+      <p class="form-note">Demo form only. Replace with your own processing later.</p>
+    </section>
+
+    <section id="visit" class="section section--alt">
+      <div class="container grid two">
+        <div>
+          <h2>Visit Us</h2>
+          <p><strong>Address:</strong> 123 Harbor Walk, Morehead City, NC</p>
+          <p><strong>Phone:</strong> (252) 555-0199</p>
+          <p><strong>Hours:</strong> Mon–Sun, 5:00–10:00</p>
+          <p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=123+Harbor+Walk%2C+Morehead+City%2C+NC"
+               target="_blank" rel="noopener noreferrer">
+              Get directions on Google Maps
+            </a>
+          </p>
+        </div>
+        <div class="map-card" aria-label="Map of Luigi's Italian Restaurant">
+          <iframe
+            title="Google Map — Luigi's Italian Restaurant"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=123+Harbor+Walk,+Morehead+City,+NC&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>Image Credits</h2>
+      <p>Logos and icons on this site were designed specifically for this project. Photos are royalty-free and attribution is not required.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-grid">
+      <p>&copy; <span id="year"></span> Luigi's Italian Restaurant</p>
+      <ul class="social">
+        <li><a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6-1a1 1 0 100 2 1 1 0 000-2z"/></svg>
+        </a></li>
+        <li><a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 22v-8h3l1-4h-4V8c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v3H6v4h3v8h4z"/></svg>
+        </a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
