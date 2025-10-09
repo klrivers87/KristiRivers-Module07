@@ -202,7 +202,7 @@ h2{
 .visually-hidden{ position:absolute !important; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); border:0; }
 
 @media (max-width: 800px){
-  .site-header{ grid-template-columns: auto auto 1fr; }
+  .site-header{ grid-template-columns: auto 1fr auto; align-items: center; }
   .site-nav{
     position:absolute; top:64px; left:0; right:0; background:#ffffff;
     transform: translateY(-120%); transition: transform .25s ease; box-shadow:var(--shadow-sm);
@@ -215,25 +215,21 @@ h2{
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 }
-/* ========= Mobile-only fixes (add at bottom) ========= */
-@media (max-width: 800px){
 
-  /* 1) Header layout: logo left, hamburger right */
+@media (max-width: 800px){
   .site-header{
-    grid-template-columns: auto 1fr auto;  /* keep */
+    grid-template-columns: auto 1fr auto;
     align-items: center;
   }
-  .hamburger{ 
-    display:block; 
-    justify-self: end;     /* push hamburger to the right */
-    padding: .75rem;       /* bigger tap target */
+  .hamburger{
+    display:block;
+    justify-self: end;
+    padding: .75rem;
   }
-
-  /* Make the dropdown position relative to header’s height, not a magic number */
   .site-header{ position: sticky; top: 0; }
   .site-nav{
     position: absolute;
-    top: calc(100% + 2px); /* sits right below header regardless of its height */
+    top: calc(100% + 2px);
     left: 0; right: 0;
     background: #fff;
     box-shadow: var(--shadow-sm);
@@ -243,17 +239,11 @@ h2{
     z-index: 999;
   }
   .nav-toggle:checked ~ .site-nav{ transform: translateY(0); }
-
-  /* 2) Stack 2-column grids so content isn't squished */
   .grid.two{ grid-template-columns: 1fr; }
-
-  /* 3) Stack 3-column menu cards for readable width */
-  .grid.three{ 
-    grid-template-columns: 1fr; 
+  .grid.three{
+    grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-
-  /* 4) Make cards look like normal cards (not tall pills) on mobile */
   .menu-card,
   .photo-card{
     border-radius: var(--radius-lg);
@@ -261,26 +251,17 @@ h2{
   .menu-card img,
   .photo-card img{
     border-radius: var(--radius-lg);
-    /* Ensure images don’t collapse strangely */
     width: 100%;
     height: auto;
   }
-  .menu-card figcaption{ 
-    padding: .9rem 1rem 1.1rem; 
+  .menu-card figcaption{
+    padding: .9rem 1rem 1.1rem;
   }
-
-  /* 5) Headings and spacing breathe a bit more on mobile */
   h2{ font-size: clamp(1.4rem, 6vw, 1.9rem); }
   .section{ padding: clamp(1.5rem, 6vw, 3rem) 0; }
-
-  /* 6) Optional: keep hero copy comfortably sized on small screens */
   .hero__content{ padding: clamp(2.25rem, 8vw, 4.5rem) 1rem; }
   .hero h1{ font-size: clamp(1.9rem, 7vw, 2.6rem); }
   .hero p{ font-size: clamp(1rem, 4.2vw, 1.15rem); }
-
-  /* 7) Forms: full-width single column already set — just tighten spacing */
   .reserve-form{ gap: .85rem; }
-
-  /* 8) Prevent any accidental horizontal scroll */
   html, body{ overflow-x: hidden; }
 }
