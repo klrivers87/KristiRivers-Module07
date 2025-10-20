@@ -22,6 +22,8 @@
   --icon-gap: 1rem;
 
   --display-script: "santelia-script", "Sant'Elia Script", cursive;
+
+  --header-h: 64px; /* used for mobile panel positioning */
 }
 
 *,
@@ -60,10 +62,11 @@ h2{
 
 .site-header{
   background:var(--surface);
-  position:sticky; top:0; z-index:50;
+  position:sticky; top:0; z-index:1000;
   box-shadow:var(--shadow-sm);
   display:grid; grid-template-columns:auto 1fr auto; align-items:center;
   gap:1rem; padding:.75rem 1rem;
+  min-height: var(--header-h);
 }
 .brand img{ display:block; height:auto; }
 
@@ -76,13 +79,12 @@ h2{
 .hamburger span{ display:block; width:28px; height:3px; background:var(--espresso); margin:5px 0; border-radius:2px; }
 
 .hero{
-  background-image: url('assets/hero-pattern.svg');
-  background-size: cover; background-position: center;
-  color:var(--text-on-dark); position:relative;
-}
-.hero::before{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(101,28,42,.60), rgba(114,126,68,.50));
+  /* Removed background-image: url('assets/hero-pattern.svg'); */
+  background:
+    radial-gradient(1200px 500px at 50% -20%, rgba(101,28,42,.35), transparent 60%),
+    linear-gradient(180deg, rgba(101,28,42,.60), rgba(114,126,68,.50));
+  color:var(--text-on-dark);
+  position:relative;
 }
 .hero__content{ position:relative; z-index:1; padding: clamp(3rem, 8vw, 6rem) 1rem; text-align:center; color:#fff; }
 .hero h1{ font-size: clamp(2rem, 4vw, 3rem); margin:.25rem 0 .5rem; }
@@ -201,67 +203,49 @@ h2{
 
 .visually-hidden{ position:absolute !important; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); border:0; }
 
+/* ===== Mobile nav rework ===== */
 @media (max-width: 800px){
-  .site-header{ grid-template-columns: auto 1fr auto; align-items: center; }
+  .hamburger{ display:block; justify-self:end; padding:.75rem; }
   .site-nav{
-    position:absolute; top:64px; left:0; right:0; background:#ffffff;
-    transform: translateY(-120%); transition: transform .25s ease; box-shadow:var(--shadow-sm);
-  }
-  .site-nav ul{ flex-direction:column; padding: .5rem; }
-  .hamburger{ display:block; }
-  .nav-toggle:checked ~ .site-nav{ transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce){
-  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-}
-
-@media (max-width: 800px){
-  .site-header{
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-  }
-  .hamburger{
-    display:block;
-    justify-self: end;
-    padding: .75rem;
-  }
-  .site-header{ position: sticky; top: 0; }
-  .site-nav{
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0; right: 0;
+    position: fixed;
+    top: var(--header-h);
+    left: 0; right: 0; bottom: 0;
     background: #fff;
     box-shadow: var(--shadow-sm);
-    transform: translateY(-120%);
+    transform: translateY(-100%);
     transition: transform .25s ease;
     will-change: transform;
     z-index: 999;
+    max-width: 100vw;
+    overflow: auto;
+  }
+  .site-nav ul{
+    flex-direction: column;
+    padding: 1rem;
   }
   .nav-toggle:checked ~ .site-nav{ transform: translateY(0); }
+  body.menu-open{ overflow: hidden; }
+
   .grid.two{ grid-template-columns: 1fr; }
-  .grid.three{
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  .menu-card,
-  .photo-card{
+  .grid.three{ grid-template-columns: 1fr; gap: 1.25rem; }
+
+  .menu-card, .photo-card{ border-radius: var(--radius-lg); }
+  .menu-card img, .photo-card img{
     border-radius: var(--radius-lg);
+    width: 100%; height: auto;
   }
-  .menu-card img,
-  .photo-card img{
-    border-radius: var(--radius-lg);
-    width: 100%;
-    height: auto;
-  }
-  .menu-card figcaption{
-    padding: .9rem 1rem 1.1rem;
-  }
+  .menu-card figcaption{ padding: .9rem 1rem 1.1rem; }
+
   h2{ font-size: clamp(1.4rem, 6vw, 1.9rem); }
   .section{ padding: clamp(1.5rem, 6vw, 3rem) 0; }
   .hero__content{ padding: clamp(2.25rem, 8vw, 4.5rem) 1rem; }
   .hero h1{ font-size: clamp(1.9rem, 7vw, 2.6rem); }
   .hero p{ font-size: clamp(1rem, 4.2vw, 1.15rem); }
-  .reserve-form{ gap: .85rem; }
+
   html, body{ overflow-x: hidden; }
+}
+
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 }
