@@ -17,8 +17,9 @@
       <img src="images/Luigi's Logo.png" alt="Luigi's — Italian Restaurant" width="160" height="48" />
     </div>
 
+    <!-- Checkbox powers CSS open/close. JS syncs aria-expanded + accessibility. -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu" />
-    <label for="nav-toggle" class="hamburger" aria-controls="primary-nav" aria-expanded="false">
+    <label for="nav-toggle" id="hamburger" class="hamburger" aria-controls="primary-nav" aria-expanded="false">
       <span></span><span></span><span></span>
       <span class="visually-hidden">Menu</span>
     </label>
@@ -34,7 +35,8 @@
   </header>
 
   <main id="main">
-    <section class="hero" role="img" aria-label="Rustic table with herbs and pasta ingredients">
+    <!-- Removed hero-pattern.svg. Using color + subtle gradient only. -->
+    <section class="hero" aria-label="Rustic table with herbs and pasta ingredients">
       <div class="hero__content container">
         <h1>Benvenuti a Luigi's</h1>
         <p>From our kitchen to your table — handmade pasta, coastal seafood, and wood-fired pizza.</p>
@@ -156,8 +158,45 @@
   </footer>
 
   <script>
+    // Year stamp
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav a11y: sync aria-expanded, Escape to close, return focus
+    const checkbox = document.getElementById('nav-toggle');
+    const trigger = document.getElementById('hamburger');
+    const nav = document.getElementById('primary-nav');
+    let lastFocus = null;
+
+    function setMenuState(open) {
+      trigger.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
+      nav.setAttribute('data-open', String(open));
+      if (open) {
+        lastFocus = document.activeElement;
+        // move focus to first link
+        const firstLink = nav.querySelector('a');
+        if (firstLink) firstLink.focus();
+      } else if (lastFocus) {
+        lastFocus.focus();
+      }
+    }
+
+    checkbox.addEventListener('change', () => setMenuState(checkbox.checked));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && checkbox.checked) {
+        checkbox.checked = false;
+        setMenuState(false);
+      }
+    });
+
+    // Close on link click (single-page anchors)
+    nav.addEventListener('click', (e) => {
+      if (e.target.closest('a')) {
+        checkbox.checked = false;
+        setMenuState(false);
+      }
+    });
   </script>
 </body>
 </html>
-
